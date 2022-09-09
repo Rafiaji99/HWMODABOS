@@ -106,7 +106,6 @@ return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNum
 }
 // Group Update
 haikal.ev.on('groups.update', async pea => {
-if (!wlcm.includes(anu.id)) return
 //console.log(pea)
 // Get Profile Picture Group
 try {

