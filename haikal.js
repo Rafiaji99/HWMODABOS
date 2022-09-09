@@ -5901,10 +5901,10 @@ case 'funnmenu': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
 let buttons = [
-{buttonId: `coffe`, buttonText: {displayText: 'Next Image'}, type: 1}
-{buttonId: `coffe`, buttonText: {displayText: 'Next Image'}, type: 1}
-{buttonId: `coffe`, buttonText: {displayText: 'Next Image'}, type: 1}
-{buttonId: `coffe`, buttonText: {displayText: 'Next Image'}, type: 1}
+{buttonId: `bugmenu`, buttonText: {displayText: 'BUG MENU'}, type: 1}
+{buttonId: `settingmenu`, buttonText: {displayText: 'SETTING MENU'}, type: 1}
+{buttonId: `soundmenu`, buttonText: {displayText: 'SOUND MENU'}, type: 1}
+{buttonId: `ownermenu`, buttonText: {displayText: 'OWNER MENU'}, type: 1}
 ]
 const buttonMessage = {
 video:fs.readFileSync("./baseikal/video/haikal.mp4"),
