@@ -5677,7 +5677,8 @@ const buttonMessage = {
 video:fs.readFileSync("./baseikal/video/haikal.mp4"),
 gifPlayback:true,
 jpegThumbnail:log0,
-caption: ``Hay Kak ${pushname} 👋 Selamat ${salam}
+caption: `
+Hay Kak ${pushname} 👋 Selamat ${salam}
 
 ◎ Owner : ${botname}
 ◎ Lib : Multi-Device
