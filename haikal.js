@@ -1566,6 +1566,233 @@ if (!isRegistered) return replyReg(mess.verif)
  }
  break
 //=================================================//
+case 'bugvip':{
+if (!isCreator) return
+if (isBan) throw sticBanLu(from)
+if (!isRegistered) return replyReg(mess.verif)
+let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+listMessage :{
+title: `SILAHKAN PILIH BUG NYA \n\n Name : ${pushname} ${ucapanWaktu}\n Number : ${m.sender.split('@')[0]}\n Status : ${isCreator ? 'Owner' : 'User'}`,
+description: "PILIH DI DALAM LIST",
+buttonText: "CLICK DISINI",
+footerText: "",
+listType: "SINGLE_SELECT",
+sections: [{
+"title": "LOADING",
+"rows": [
+{
+"title": "hu",
+"description": "Sukses ✓",
+"rowId": `${prefix}hu`
+}
+]
+},
+{
+"title": "LOADINGt",
+"rows": [
+{
+"title": "hi",
+"description": "Sukses ✓",
+"rowId": `${prefix}hi`
+}
+]
+},
+{
+"title": "LOADING",
+"rows": [
+{
+"title": "ha",
+"description": "Sukses ✓",
+"rowId": `${prefix}ha`
+}
+]
+},
+{
+"title": "LOADING",
+"rows": [
+{
+"title": "he",
+"description": "Sukses ✓",
+"rowId": `${prefix}he`
+}
+]
+},
+{
+"title": "LOADING",
+"rows": [
+{
+"title": "ba",
+"description": "Sukses ✓",
+"rowId": `${prefix}ba`
+}
+]
+},
+{
+"title": "LOADING",
+"rows": [
+{
+"title": "be",
+"description": "Sukses ✓",
+"rowId": `${prefix}be`
+}
+]
+},
+{
+"title": "LOADING",
+"rows": [
+{
+"title": "Bug Vn",
+"description": "Sukses ✓",
+"rowId": `${prefix}bu`
+}
+]
+},
+{
+"title": "LOADING",
+"rows": [
+{
+"title": "Bug Vn",
+"description": "Sukses ✓",
+"rowId": `${prefix}bi`
+}
+]
+},
+{
+"title": "LOADING",
+"rows": [
+{
+"title": "Bug Vn",
+"description": "Sukses ✓",
+"rowId": `${prefix}ca`
+}
+]
+},
+{
+"title": "LOADING",
+"rows": [
+{
+"title": "Bug Vn",
+"description": "Sukses ✓",
+"rowId": `${prefix}ci`
+}
+]
+},
+{
+"title": "LOADING",
+"rows": [
+{
+"title": "Bug Vn",
+"description": "Sukses ✓",
+"rowId": `${prefix}cu`
+}
+]
+},
+{
+"title": "LOADING",
+"rows": [
+{
+"title": "Bug Vn",
+"description": "Sukses ✓",
+"rowId": `${prefix}co`
+}
+]
+},
+],
+listType: 1
+}
+}), { userJid: m.chat, quoted: doc })
+haikal.relayMessage(m.chat, template.message, { messageId: template.key.id })
+}
+break
+//=================================================//
+case 'senbug':{
+if (!isCreator) return
+if (isBan) throw sticBanLu(from)
+if (!isRegistered) return replyReg(mess.verif)
+let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+listMessage :{
+title: `Silahkan Pilih Bug Yang Anda Inginkan \n\n Name : ${pushname} ${ucapanWaktu}\n Number : ${m.sender.split('@')[0]}\n Status : ${isCreator ? 'Owner' : 'User'}`,
+description: "PERINGATAN!!!",
+buttonText: "CLICK DISINI",
+footerText: "EFFECT INI MEMBUAT WHATSAPP MENJADI CRASH",
+listType: "SINGLE_SELECT",
+sections: [{
+"title": "Menu Bug",
+"rows": [
+{
+"title": "Bug1",
+"description": "Bug Berjenis Quoted Gambar",
+"rowId": `${prefix}bug1`
+}
+]
+},
+{
+"title": "Menu Bug",
+"rows": [
+{
+"title": "Bug2",
+"description": "Bug Berjenis Lokasi",
+"rowId": `${prefix}bug2`
+}
+]
+},
+{
+"title": "Menu Bug",
+"rows": [
+{
+"title": "Bug3",
+"description": "Bug Berjenis Troli",
+"rowId": `${prefix}bug3`
+}
+]
+},
+{
+"title": "Menu Bug",
+"rows": [
+{
+"title": "Bug4",
+"description": "Bug Berjenis Audio",
+"rowId": `${prefix}bug4`
+}
+]
+},
+{
+"title": "Menu Bug",
+"rows": [
+{
+"title": "Bug5",
+"description": "Bug Berjenis Group",
+"rowId": `${prefix}bug5`
+}
+]
+},
+{
+"title": "Menu Bug",
+"rows": [
+{
+"title": "Bug6",
+"description": "Bug Berjenis Contact",
+"rowId": `${prefix}bug6`
+}
+]
+},
+{
+"title": "Menu Bug",
+"rows": [
+{
+"title": "Bug7",
+"description": "Bug Berjenis Dokumen",
+"rowId": `${prefix}bug7`
+}
+]
+}
+],
+listType: 1
+}
+}), { userJid: m.chat, quoted: doc })
+haikal.relayMessage(m.chat, template.message, { messageId: template.key.id })
+}
+break
 //=================================================//
 case 'inspect': {
 if (isBan) throw sticBanLu(from)
@@ -5673,10 +5900,13 @@ break
 case 'funnmenu': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-const templateButtons = [
-{index: 1, urlButton: {displayText: 'Join Group', url: linkgrupss}}
+let buttons = [
+{buttonId: `coffe`, buttonText: {displayText: 'Next Image'}, type: 1}
+{buttonId: `coffe`, buttonText: {displayText: 'Next Image'}, type: 1}
+{buttonId: `coffe`, buttonText: {displayText: 'Next Image'}, type: 1}
+{buttonId: `coffe`, buttonText: {displayText: 'Next Image'}, type: 1}
 ]
-const templateMessage = {
+const buttonMessage = {
 video:fs.readFileSync("./baseikal/video/haikal.mp4"),
 gifPlayback:true,
 jpegThumbnail:log0,
@@ -5709,10 +5939,11 @@ family100
 tebak [option]
 math [mode]
 suitpvp [@tag]`,
-footer: '© HW MODS WA',
-templateButtons: templateButtons
+footer: haikal.user.name,
+buttons: buttons,
+headerType: 4
 }
-haikal.sendMessage(m.chat, templateMessage)
+haikal.sendMessage(m.chat, buttonMessage, { quoted: hw })
 }
 break
 //=================================================//
@@ -5739,7 +5970,8 @@ Bug Cr Vip [ true / false ]
 bugghoib [ on / off ]
 
 spam [ Reply Bug For Spam ]
-
+senbug [ Bug Pilihan ]
+bugvip [ Bug Pilihan ]
 ha [ bugvn ]
 hi [ bugvn ]
 hu [ bugvn ]
