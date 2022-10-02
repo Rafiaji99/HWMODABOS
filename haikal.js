@@ -5664,34 +5664,6 @@ haikal.sendMessage(m.chat, buttonMessage, { quoted: hw })
 }
 break
 //=================================================//
-case 'bughwmods': {
-if (isBan) throw sticBanLu(from)
-if (!isRegistered) return replyReg(mess.verif)
-const templateButtons: [
-{ callButton: { displayText: `Number Phone Owner`, phoneNumber: `${prefix}owner`}},
-{ callButton: { displayText: `Number Phone Owner`, phoneNumber: `${prefix}owner`}},
-{ urlButton: { displayText: `ID GORUP`, url: `https://www.whatsapp.com/otp/copy/${from}`}},
-{ quickReplyButton: { displayText: `ʀᴜʟᴇs`, id: `${prefix}rules`}},
-{ quickReplyButton: { displayText: `ɪɴғᴏ ʙᴏᴛᴢ`, id: `${prefix}x`}},
-{ quickReplyButton: { displayText: `sᴇᴡᴀ ʙᴏᴛᴢ`, id: `${prefix}sewa`}},
-]
-const buttonMessage = {
-video:fs.readFileSync("./baseikal/video/haikal.mp4"),
-gifPlayback:true,
-jpegThumbnail:log0,
-caption: `
-◎ Lib : Multi-Device
-◎ Terbit : *01-09-1999*
-◎ Owner : 085714170944
-
-[ 🇲🇨 Ini adalah Bot Pribadi Tekan Link Di Bawah Untuk Bergabung ]`,
-footer: haikal.user.name,
-buttons: templateButtons,
-headerType: 6
-}
-haikal.sendMessage(m.chat, buttonMessage, { quoted: hw })
-}
-break
 //=================================================//
 case 'menu': {
 if (isBan) throw sticBanLu(from)
