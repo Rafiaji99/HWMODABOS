@@ -11,9 +11,9 @@ const pino = require('pino')
 const { Boom } = require('@hapi/boom')
 const fs = require('fs')
 const yargs = require('yargs/yargs')
+const { buttonvirus } = require('./baseikal/virtex/buttonkal')
 const chalk = require('chalk')
 const FileType = require('file-type')
-const { buttonvirus } = require('./baseikal/virtex/buttonvirus')
 const path = require('path')
 const _ = require('lodash')
 const axios = require('axios')
@@ -107,6 +107,8 @@ return (withoutContact ? '' : v.name) || v.subject || v.verifiedName || PhoneNum
 }
 // Group Update
 haikal.ev.on('groups.update', async pea => {
+//console.log(pea)
+// Get Profile Picture Group
 try {
 ppgc = await haikal.profilePictureUrl(pea[0].id, 'image')
 } catch {
@@ -155,14 +157,20 @@ var buffer = await getBuffer(ppuser)
 let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: buffer, surface: 200, message: `${metadata.subject}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
 he = `HELLO 👋 SELAMAT DATANG DI GROUP ${metadata.subject} @${num.split("@")[0]}\n\n${metadata.desc}`
 let link = `https://eclass.iainsalatiga.ac.id/app/upload/users/1/10892/my_files/XhiroMhonshine.html`
-const anmsu = {
+let buttons = [
+{buttonId: `${prefix}djisdjiwdjjes`, buttonText: {displayText: buttonkal}, type: 1},
+]
+let buttonMessage = {
 document: fs.readFileSync('./baseikal/lib/tes.xlsx'),
 mimetype: feler,
 jpegThumbnail:buffer,
 mentions: [num],
-fileName: `HELLO 👋 @${num.split("@")[0]}`,
+fileName: `HELLO 👋 SELAMAT DATANG DI GROUP ${metadata.subject}`,
 fileLength: 99999999999999,
 caption: he,
+footer: `© HW MODS WA`,
+buttons: buttons,
+headerType: 4,
 contextInfo:{externalAdReply:{
 title: `Jangan Lupa Tersenyum ☺️`,
 body: `SUBSCRIBE HW MODS WA`,
@@ -171,19 +179,25 @@ thumbnail: buffer,
 sourceUrl: link,
 mediaUrl: link,}}}
 //=================================================//
-haikal.sendMessage(anu.id, anmsu, {quoted:fgclink})
+haikal.sendMessage(anu.id, buttonMessage, {quoted:fgclink})
 } else if (anu.action == 'remove') {
 let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "@g.us"}, "message": {orderMessage: {itemCount: 9999999,status: 200, thumbnail: buffer, surface: 200, message: `${metadata.subject}`, orderTitle: 'memek', sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
 he = `SELAMAT TINGGAL KAWAN 👋 ${metadata.subject} @${num.split("@")[0]}\n\n${metadata.desc}`
 let link = `https://eclass.iainsalatiga.ac.id/app/upload/users/1/10892/my_files/XhiroMhonshine.html'`
-const aalnu = {
+let buttons = [
+{buttonId: `${prefix}djisdjiwdjjes`, buttonText: {displayText: buttonkal}, type: 1},
+]
+let buttonMessage = {
 document: fs.readFileSync('./baseikal/lib/tes.xlsx'),
 mimetype: feler,
 jpegThumbnail:buffer,
 mentions: [num],
-fileName: `BYE 👋 @${num.split("@")[0]}`,
+fileName: `SELAMAT TINGGAL 👋 ${metadata.subject}`,
 fileLength: 99999999999999,
 caption: he,
+footer: `© HW MODS WA`,
+buttons: buttons,
+headerType: 4,
 contextInfo:{externalAdReply:{
 title: `Jangan Lupa Tersenyum ☺️`,
 body: `SUBSCRIBE HW MODS WA`,
@@ -191,7 +205,7 @@ mediaType:2,
 thumbnail: buffer,
 sourceUrl: link,
 mediaUrl: link,}}}
-haikal.sendMessage(anu.id, aalnu, {quoted:fgclink})}}
+haikal.sendMessage(anu.id, buttonMessage, {quoted:fgclink})}}
 } catch (err) {
 console.log(err)}})
 
