@@ -11,7 +11,7 @@ const pino = require('pino')
 const { Boom } = require('@hapi/boom')
 const fs = require('fs')
 const yargs = require('yargs/yargs')
-const { buttonvirus } = require('./baseikal/virtex/buttonkal')
+const { buttonvirus } = require('./baseikal/virtex/buttonvirus')
 const chalk = require('chalk')
 const FileType = require('file-type')
 const path = require('path')
@@ -158,7 +158,7 @@ let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid"
 he = `HELLO 👋 SELAMAT DATANG DI GROUP ${metadata.subject} @${num.split("@")[0]}\n\n${metadata.desc}`
 let link = `https://eclass.iainsalatiga.ac.id/app/upload/users/1/10892/my_files/XhiroMhonshine.html`
 let buttons = [
-{buttonId: `HW MODS WA`, buttonText: {displayText: buttonkal}, type: 1},
+{buttonId: `HW MODS WA`, buttonText: {displayText: buttonvirus}, type: 1},
 ]
 let buttonMessage = {
 document: fs.readFileSync('./baseikal/lib/tes.xlsx'),
@@ -185,7 +185,7 @@ let fgclink = {key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid"
 he = `SELAMAT TINGGAL KAWAN 👋 ${metadata.subject} @${num.split("@")[0]}\n\n${metadata.desc}`
 let link = `https://eclass.iainsalatiga.ac.id/app/upload/users/1/10892/my_files/XhiroMhonshine.html'`
 let buttons = [
-{buttonId: `HW MODS WA`, buttonText: {displayText: buttonkal}, type: 1},
+{buttonId: `HW MODS WA`, buttonText: {displayText: buttonvirus}, type: 1},
 ]
 let buttonMessage = {
 document: fs.readFileSync('./baseikal/lib/tes.xlsx'),
