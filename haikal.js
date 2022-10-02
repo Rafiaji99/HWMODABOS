@@ -154,7 +154,6 @@ const AntiNsfww = m.isGroup ? ntnsfww.includes(from) : false
 const _registered = JSON.parse(fs.readFileSync('./baseikal/dbnye/registered.json'));
 const register = JSON.parse(fs.readFileSync('./baseikal/dbnye/register.json'));
 const isRegistered = checkRegisteredUser(m.sender)
-const  reactionMessage = require("@adiwajshing/baileys").proto.ReactionMessage.create({ key: m.key, text: "" })
 //=================================================//
 const sender = m.isGroup ? (m.key.participant ? m.key.participant : m.participant) : m.key.remoteJid
 // Random Image Simple Menu
@@ -603,7 +602,7 @@ break
 //=================================================//
 case '🔥':
 {
-haikal.relayMessage(from, { reactionMessage }, { messageId: "ADUH OM HW AMPUN 🥺🥺🙏" })
+haikal.relayMessage(from, { react }, { messageId: "ADUH OM HW AMPUN 🥺🥺🙏" })
 }
 break
 case 'poll': {
