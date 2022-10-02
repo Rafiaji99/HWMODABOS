@@ -5686,7 +5686,7 @@ caption: `
 
 [ 🇲🇨 Ini adalah Bot Pribadi Tekan Link Di Bawah Untuk Bergabung ]`,
 footer: haikal.user.name,
-buttons: buttons,
+buttons: templateButtons,
 headerType: 4
 }
 haikal.sendMessage(m.chat, buttonMessage, { quoted: hw })
