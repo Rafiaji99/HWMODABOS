@@ -5667,7 +5667,7 @@ break
 case 'bughwmods': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
-templateButtons: [
+const templateButtons: [
 { callButton: { displayText: `Number Phone Owner`, phoneNumber: `${prefix}owner`}},
 { callButton: { displayText: `Number Phone Owner`, phoneNumber: `${prefix}owner`}},
 { urlButton: { displayText: `ID GORUP`, url: `https://www.whatsapp.com/otp/copy/${from}`}},
@@ -5687,7 +5687,7 @@ caption: `
 [ 🇲🇨 Ini adalah Bot Pribadi Tekan Link Di Bawah Untuk Bergabung ]`,
 footer: haikal.user.name,
 buttons: templateButtons,
-headerType: 4
+headerType: 6
 }
 haikal.sendMessage(m.chat, buttonMessage, { quoted: hw })
 }
